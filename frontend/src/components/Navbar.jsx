@@ -43,16 +43,6 @@ const Navbar = () => {
 
       <div className='flex items-center gap-4'>
 
-        {/* ✅ Admin Panel Button - show only on home page  */}
-        {location.pathname === '/' && (
-          <button
-            onClick={() => window.open('/', '_blank')}
-            className='bg-primary text-white text-xs px-4 py-2 rounded-full hover:bg-gray-700 hidden md:block'
-          >
-            Admin Panel
-          </button>
-        )}
-
         {token && userData ? (
           <div className='flex items-center gap-2 cursor-pointer group relative'>
             <img className='w-12 rounded-full' src={userData.image || '/fallback-user.png'} alt="profile" />

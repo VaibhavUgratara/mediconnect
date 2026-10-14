@@ -43,15 +43,7 @@ const Navbar = () => {
           {aToken ? 'Admin' : 'Doctor'}
         </p>
 
-        {/* User Panel Button (visible on both dashboards) */}
-        {isOnDashboard && (
-          <button
-            onClick={goToUserPanel}
-            className='ml-2 text-white bg-primary hover:bg-gray-700 px-3 py-1.5 rounded-full text-xs'
-          >
-            User Panel
-          </button>
-        )}
+        
       </div>
 
       {/* Logout */}

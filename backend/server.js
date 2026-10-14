@@ -1,4 +1,5 @@
 import express from 'express'
+import mongoose from 'mongoose'
 import cors from 'cors'
 import 'dotenv/config'
 import connectDB from './config/mongodb.js'
@@ -17,7 +18,17 @@ connectCloudinary()
 
 // middlewares
 app.use(express.json())
-app.use(cors())
+const allowedOrigins = (process.env.CLIENT_URLS || "http://localhost:5173,http://localhost:5174")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error("Origin not allowed by CORS"));
+  },
+  credentials: true,
+}))
 
 // api endpoints
 app.use('/api/admin', adminRouter)
